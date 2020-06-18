@@ -65,6 +65,14 @@ const currencies = {
     return result;
   }
 
+
+  function formatCurrency(currency, amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency
+    }).format(amount);
+  }
+
   async function handleInput(e) {
     console.log(e.currentTarget);
     console.log(e.target);
@@ -73,7 +81,7 @@ const currencies = {
       selectTo.value,
       amountToExchange.value
     )
-    exchangedAmount.textContent = exchange;
+    exchangedAmount.textContent = formatCurrency(selectTo.value, exchange);
   }
 
   exchangeForm.addEventListener('input', handleInput);
